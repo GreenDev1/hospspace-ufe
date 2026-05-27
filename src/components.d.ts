@@ -6,22 +6,30 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface LnHospspaceWlList {
+    }
     interface MyComponent {
         /**
           * The first name
          */
-        "first": string;
+        "first"?: string;
         /**
           * The last name
          */
-        "last": string;
+        "last"?: string;
         /**
           * The middle name
          */
-        "middle": string;
+        "middle"?: string;
     }
 }
 declare global {
+    interface HTMLLnHospspaceWlListElement extends Components.LnHospspaceWlList, HTMLStencilElement {
+    }
+    var HTMLLnHospspaceWlListElement: {
+        prototype: HTMLLnHospspaceWlListElement;
+        new (): HTMLLnHospspaceWlListElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -29,10 +37,13 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "ln-hospspace-wl-list": HTMLLnHospspaceWlListElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface LnHospspaceWlList {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -55,6 +66,7 @@ declare namespace LocalJSX {
     }
 
     interface IntrinsicElements {
+        "ln-hospspace-wl-list": LnHospspaceWlList;
         "my-component": Omit<MyComponent, keyof MyComponentAttributes> & { [K in keyof MyComponent & keyof MyComponentAttributes]?: MyComponent[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `attr:${K}`]?: MyComponentAttributes[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `prop:${K}`]?: MyComponent[K] };
     }
 }
@@ -62,6 +74,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ln-hospspace-wl-list": LocalJSX.IntrinsicElements["ln-hospspace-wl-list"] & JSXBase.HTMLAttributes<HTMLLnHospspaceWlListElement>;
             "my-component": LocalJSX.IntrinsicElements["my-component"] & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
