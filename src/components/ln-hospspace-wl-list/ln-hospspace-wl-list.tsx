@@ -24,7 +24,7 @@ export class LnHospspaceWlList {
           estimatedDurationMinutes: 20,
           condition: 'Teploty'
       }, {
-          name: 'Ing. Ferdinand Tretys',
+          name: 'Ing. Ferdinand Tretys junguj',
           patientId: '10028',
           estimatedStart: new Date(Date.now() + 5 * 60),
           estimatedDurationMinutes: 15,
