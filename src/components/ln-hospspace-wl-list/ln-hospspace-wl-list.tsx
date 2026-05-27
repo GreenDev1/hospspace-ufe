@@ -1,9 +1,5 @@
 import { Component, Host, h } from '@stencil/core';
 
-import '@material/web/list/list'
-import '@material/web/list/list-item'
-import '@material/web/icon/icon'
-
 @Component({
   tag: 'ln-hospspace-wl-list',
   styleUrl: 'ln-hospspace-wl-list.css',
