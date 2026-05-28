@@ -58,7 +58,7 @@ export class LnHospspaceApp {
     }
 
     return (
-      <Host>
+      <Host data-theme="light">
         
         <header style={{
           background: "#fff",
