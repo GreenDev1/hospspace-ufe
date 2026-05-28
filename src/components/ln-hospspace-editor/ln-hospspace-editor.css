@@ -1,0 +1,23 @@
+:host {
+  display: contents;
+}
+
+md-dialog {
+  --md-dialog-container-max-width: 550px;
+  
+  /* Zabezpečí, že dialóg vnútri shadow rootu prevezme svetlé farby a nebude priesvitný */
+  --md-dialog-container-background-color: #ffffff;
+  color: #1f1f1f;
+}
+
+/* Oprava pre formulár vnútri dialógu, ak by zdedil bielu farbu písma z Polyfea dark mode */
+form[slot="content"] {
+  color: #1f1f1f !important;
+}
+
+/* Zaistíme, že Material vstupné polia nebudú mať neviditeľný text */
+md-outlined-text-field, md-filled-select {
+  --md-outlined-text-field-input-text-color: #1f1f1f;
+  --md-filled-select-input-text-color: #1f1f1f;
+  background-color: #ffffff;
+}

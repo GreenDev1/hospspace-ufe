@@ -6,7 +6,37 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface LnHospspaceApp {
+        /**
+          * @default "/hospital-spaces/"
+         */
+        "basePath": string;
+    }
+    interface LnHospspaceEditor {
+        /**
+          * @default []
+         */
+        "existingPavilions": string[];
+        /**
+          * @default false
+         */
+        "opened": boolean;
+        /**
+          * @default 'general'
+         */
+        "role": string;
+        /**
+          * @default {}
+         */
+        "space": any;
+    }
     interface LnHospspaceWlList {
+        "apiBase": string;
+        /**
+          * @default 'general'
+         */
+        "role": 'spravca' | 'veduci' | 'general';
+        "spaceId": string;
     }
     interface MyComponent {
         /**
@@ -23,7 +53,35 @@ export namespace Components {
         "middle"?: string;
     }
 }
+export interface LnHospspaceEditorCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLnHospspaceEditorElement;
+}
 declare global {
+    interface HTMLLnHospspaceAppElement extends Components.LnHospspaceApp, HTMLStencilElement {
+    }
+    var HTMLLnHospspaceAppElement: {
+        prototype: HTMLLnHospspaceAppElement;
+        new (): HTMLLnHospspaceAppElement;
+    };
+    interface HTMLLnHospspaceEditorElementEventMap {
+        "editor-closed": void;
+        "editor-saved": any;
+    }
+    interface HTMLLnHospspaceEditorElement extends Components.LnHospspaceEditor, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLnHospspaceEditorElementEventMap>(type: K, listener: (this: HTMLLnHospspaceEditorElement, ev: LnHospspaceEditorCustomEvent<HTMLLnHospspaceEditorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLnHospspaceEditorElementEventMap>(type: K, listener: (this: HTMLLnHospspaceEditorElement, ev: LnHospspaceEditorCustomEvent<HTMLLnHospspaceEditorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLLnHospspaceEditorElement: {
+        prototype: HTMLLnHospspaceEditorElement;
+        new (): HTMLLnHospspaceEditorElement;
+    };
     interface HTMLLnHospspaceWlListElement extends Components.LnHospspaceWlList, HTMLStencilElement {
     }
     var HTMLLnHospspaceWlListElement: {
@@ -37,12 +95,46 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "ln-hospspace-app": HTMLLnHospspaceAppElement;
+        "ln-hospspace-editor": HTMLLnHospspaceEditorElement;
         "ln-hospspace-wl-list": HTMLLnHospspaceWlListElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface LnHospspaceApp {
+        /**
+          * @default "/hospital-spaces/"
+         */
+        "basePath"?: string;
+    }
+    interface LnHospspaceEditor {
+        /**
+          * @default []
+         */
+        "existingPavilions"?: string[];
+        "onEditor-closed"?: (event: LnHospspaceEditorCustomEvent<void>) => void;
+        "onEditor-saved"?: (event: LnHospspaceEditorCustomEvent<any>) => void;
+        /**
+          * @default false
+         */
+        "opened"?: boolean;
+        /**
+          * @default 'general'
+         */
+        "role"?: string;
+        /**
+          * @default {}
+         */
+        "space"?: any;
+    }
     interface LnHospspaceWlList {
+        "apiBase"?: string;
+        /**
+          * @default 'general'
+         */
+        "role"?: 'spravca' | 'veduci' | 'general';
+        "spaceId"?: string;
     }
     interface MyComponent {
         /**
@@ -59,6 +151,19 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
 
+    interface LnHospspaceAppAttributes {
+        "basePath": string;
+    }
+    interface LnHospspaceEditorAttributes {
+        "opened": boolean;
+        "role": string;
+        "space": string;
+    }
+    interface LnHospspaceWlListAttributes {
+        "apiBase": string;
+        "spaceId": string;
+        "role": 'spravca' | 'veduci' | 'general';
+    }
     interface MyComponentAttributes {
         "first": string;
         "middle": string;
@@ -66,7 +171,9 @@ declare namespace LocalJSX {
     }
 
     interface IntrinsicElements {
-        "ln-hospspace-wl-list": LnHospspaceWlList;
+        "ln-hospspace-app": Omit<LnHospspaceApp, keyof LnHospspaceAppAttributes> & { [K in keyof LnHospspaceApp & keyof LnHospspaceAppAttributes]?: LnHospspaceApp[K] } & { [K in keyof LnHospspaceApp & keyof LnHospspaceAppAttributes as `attr:${K}`]?: LnHospspaceAppAttributes[K] } & { [K in keyof LnHospspaceApp & keyof LnHospspaceAppAttributes as `prop:${K}`]?: LnHospspaceApp[K] };
+        "ln-hospspace-editor": Omit<LnHospspaceEditor, keyof LnHospspaceEditorAttributes> & { [K in keyof LnHospspaceEditor & keyof LnHospspaceEditorAttributes]?: LnHospspaceEditor[K] } & { [K in keyof LnHospspaceEditor & keyof LnHospspaceEditorAttributes as `attr:${K}`]?: LnHospspaceEditorAttributes[K] } & { [K in keyof LnHospspaceEditor & keyof LnHospspaceEditorAttributes as `prop:${K}`]?: LnHospspaceEditor[K] };
+        "ln-hospspace-wl-list": Omit<LnHospspaceWlList, keyof LnHospspaceWlListAttributes> & { [K in keyof LnHospspaceWlList & keyof LnHospspaceWlListAttributes]?: LnHospspaceWlList[K] } & { [K in keyof LnHospspaceWlList & keyof LnHospspaceWlListAttributes as `attr:${K}`]?: LnHospspaceWlListAttributes[K] } & { [K in keyof LnHospspaceWlList & keyof LnHospspaceWlListAttributes as `prop:${K}`]?: LnHospspaceWlList[K] };
         "my-component": Omit<MyComponent, keyof MyComponentAttributes> & { [K in keyof MyComponent & keyof MyComponentAttributes]?: MyComponent[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `attr:${K}`]?: MyComponentAttributes[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `prop:${K}`]?: MyComponent[K] };
     }
 }
@@ -74,6 +181,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ln-hospspace-app": LocalJSX.IntrinsicElements["ln-hospspace-app"] & JSXBase.HTMLAttributes<HTMLLnHospspaceAppElement>;
+            "ln-hospspace-editor": LocalJSX.IntrinsicElements["ln-hospspace-editor"] & JSXBase.HTMLAttributes<HTMLLnHospspaceEditorElement>;
             "ln-hospspace-wl-list": LocalJSX.IntrinsicElements["ln-hospspace-wl-list"] & JSXBase.HTMLAttributes<HTMLLnHospspaceWlListElement>;
             "my-component": LocalJSX.IntrinsicElements["my-component"] & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
