@@ -1,3 +1,11 @@
 :host {
   display: block;
+
+  color-scheme: light;
+
+  --md-sys-color-background: #ffffff;
+  --md-sys-color-surface: #ffffff;
+  --md-sys-color-on-surface: #1f1f1f;
+
+  --md-sys-color-primary: #1a73e8;
 }
